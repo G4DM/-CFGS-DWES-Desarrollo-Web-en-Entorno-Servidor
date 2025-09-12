@@ -1,0 +1,1 @@
+<p>Esto es un párrafo (archivo.php)</p>

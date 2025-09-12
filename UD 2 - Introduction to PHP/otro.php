@@ -1,0 +1,1 @@
+<strong>Texto en negrita (otro.php)</strong>
