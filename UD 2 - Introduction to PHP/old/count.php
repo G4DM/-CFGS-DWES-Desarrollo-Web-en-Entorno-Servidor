@@ -1,5 +1,5 @@
 <?php
-include 'cabecera.inc.php';
+include_once 'cabecera.inc.php';
 ?>
 
 <main>
@@ -29,5 +29,5 @@ include 'cabecera.inc.php';
 </main>
 
 <?php
-include 'footer.php';
+include_once 'footer.inc.php';
 ?>
