@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <?php include_once "../header.inc.php"; ?>
+    <?php include_once "../inc/header.inc.php"; ?>
 
     <section>
         <article>
@@ -19,7 +19,7 @@
         </article>
     </section>
 
-    <form action="#" method="post">
+    <form action="../data/consulta.php" method="POST">
         <label for="name">Name</label>
         <input type="text" required name="name" id="name" />
         <br />
@@ -28,9 +28,18 @@
         <br />
         <label for="email">Email</label>
         <input type="email" required name="email" id="email" />
+        <br>
+        <label for="date">Date of Birth</label>
+        <input type="date" name="date" id="date" />
+        <br>
+        <label for="checkbox">Subscribe to newsletter</label>
+        <input type="checkbox" name="checkbox" id="checkbox" />
+        <br>
+        <button type="submit">Submit</button>
     </form>
     </main>
-    <?php include_once "../footer.inc.php"; ?>
+    <?php include "../data/consulta.php"; ?>
+    <?php include_once "../inc/footer.inc.php"; ?>
 </body>
 
 </html>

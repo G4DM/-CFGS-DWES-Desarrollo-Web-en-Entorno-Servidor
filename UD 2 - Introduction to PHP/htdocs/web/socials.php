@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <?php include_once "../header.inc.php" ?>
+    <?php include_once "../inc/header.inc.php" ?>
     <main>
         <section>
             <article>
@@ -25,7 +25,7 @@
             </article>
         </section>
     </main>
-    <?php include_once "../footer.inc.php" ?>
+    <?php include_once "../inc/footer.inc.php" ?>
 
 </body>
 
