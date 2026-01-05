@@ -1,2 +1,5 @@
 # Carpeta con los PDFs y cosas no importantes para el repositorio
 gitignore/
+
+# Carpeta del repositorio del proyecto de la API de Hotel
+API_Hotel/
