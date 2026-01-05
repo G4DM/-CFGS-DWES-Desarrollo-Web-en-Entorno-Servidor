@@ -1,0 +1,79 @@
+<?php
+class Model {
+	protected $conexion;
+
+	public function __construct($dbname, $dbuser, $dbpass, $dbhost){
+
+		$opc = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8');
+		try {
+			$this->conexion  = new PDO('mysql:host='. $dbhost .';dbname='.$dbname, $dbuser, $dbpass, $opc);
+		} catch (PDOException $e) {
+			die('No ha sido posible realizar la conexion con la base de datos: '. $e->getMessage());
+		}
+	 }
+
+	private function lanzarSQLEnBD($sql){
+		$result = $this->conexion->query($sql);
+
+		$alimentos = array();
+
+		while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+			$alimentos[] = $row;
+		}
+
+		return $alimentos;
+	}
+
+	public function buscarAlimentos(){
+		$sql = 'SELECT * FROM alimentos ORDER BY energia DESC;';
+		return $this->lanzarSQLEnBD($sql);
+	}
+
+	public function buscarAlimentosPorNombre($nombre){
+		$nombre = htmlspecialchars($nombre);
+		$sql = 'SELECT * FROM alimentos WHERE nombre LIKE "'. $nombre .'" ORDER BY energia DESC;';
+	
+		return $this->lanzarSQLEnBD($sql);
+	}
+
+	public function buscarAlimentosPorEnergiaSQL($energia){
+		$energia = htmlspecialchars($energia);
+		$sql = 'SELECT * FROM alimentos WHERE energia LIKE "'. $energia .'" ORDER BY energia DESC;';
+	
+		return $this->lanzarSQLEnBD($sql);
+	}
+
+	public function buscarAlimentosCombinadaSQL($nombre, $energia){
+		$nombre = htmlspecialchars($nombre);
+		$energia = htmlspecialchars($energia);
+		$sql = 'SELECT * FROM alimentos WHERE nombre LIKE "' . $nombre .'" AND energia LIKE "'. $energia .'" ORDER BY nombre ASC;';
+
+		return $this->lanzarSQLEnBD($sql);
+	}
+
+	public function buscarAlimentoPorId($id){
+		$id = htmlspecialchars($id);
+		$sql = 'SELECT * FROM alimentos WHERE id='. $id .';';
+
+		return $this->lanzarSQLEnBD($sql)[0];
+	}
+
+	public function insertarAlimento($n, $e, $p, $hc, $f, $g){
+		$n = htmlspecialchars($n);
+		$e = htmlspecialchars($e);
+		$p = htmlspecialchars($p);
+		$hc = htmlspecialchars($hc);
+		$f = htmlspecialchars($f);
+		$g = htmlspecialchars($g);
+
+		$sql = 'INSERT INTO alimentos (nombre, energia, proteina, hidratocarbono, fibra, grasatotal) VALUES ("'. $n .'",'. $e .','. $p .','. $hc .','. $f .','. $g .');';
+
+		$result = $this->conexion->query($sql);
+		return $result;
+	}
+
+	public function validarDatos($n, $e, $p, $hc, $f, $g) {
+		return (is_string($n) & is_numeric($e) & is_numeric($p) & is_numeric($hc) & is_numeric($f) & is_numeric($g));
+	}
+}
+?>
