@@ -6,22 +6,22 @@
     <form>
         <div class="form-group">
             <label>Título</label>
-            <input type="text" class="form-control" value="{{ $pelicula['title'] }}">
+            <input type="text" class="form-control" value="{{ $pelicula->title }}">
         </div>
 
         <div class="form-group">
             <label>Año</label>
-            <input type="text" class="form-control" value="{{ $pelicula['year'] }}">
+            <input type="text" class="form-control" value="{{ $pelicula->year }}">
         </div>
 
         <div class="form-group">
             <label>Director</label>
-            <input type="text" class="form-control" value="{{ $pelicula['director'] }}">
+            <input type="text" class="form-control" value="{{ $pelicula->director }}">
         </div>
 
         <div class="form-group">
             <label>Sinopsis</label>
-            <textarea class="form-control">{{ $pelicula['synopsis'] }}</textarea>
+            <textarea class="form-control">{{ $pelicula->synopsis }}</textarea>
         </div>
 
         <br>
