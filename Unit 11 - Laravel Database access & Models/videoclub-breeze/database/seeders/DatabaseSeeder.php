@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Seeder;
 use App\Models\Movie;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,7 +16,10 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         self::seedCatalog();
-        $this->command->info('Tabla catálogo inicializada con datos!');
+        $this->command->info('Tabla "movies" inicializada con datos!');
+
+        self::seedUsers();
+        $this->command->info('¡Tabla "users" inicialziada con datos!');
     }
 
     private function seedCatalog()
@@ -193,5 +198,28 @@ class DatabaseSeeder extends Seeder
             $p->synopsis = $movie['synopsis'];
             $p->save();
         }
+    }
+
+    private function seedUsers() {
+        $arrayUsers = array(
+            [
+                'name' => 'Admin',
+                'email' => 'admin@videoclub.com',
+                'password' => Hash::make('admin')
+            ],
+            [
+                'name' => 'User',
+                'email' => 'user@videoclub.com',
+                'password' => Hash::make('user')
+            ]
+        );
+
+        foreach($arrayUsers as $user){
+            $u = new User();
+            $u->name = $user['name'];
+            $u->email = $user['email'];
+            $u->password = $user['password'];
+            $u->save();
+        };
     }
 }
